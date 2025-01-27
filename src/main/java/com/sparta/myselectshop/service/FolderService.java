@@ -3,10 +3,13 @@ package com.sparta.myselectshop.service;
 import com.sparta.myselectshop.dto.FolderRequestDto;
 import com.sparta.myselectshop.dto.FolderResponseDto;
 import com.sparta.myselectshop.entity.Folder;
+import com.sparta.myselectshop.entity.Product;
 import com.sparta.myselectshop.entity.User;
 import com.sparta.myselectshop.repository.FolderRepository;
+import com.sparta.myselectshop.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,9 @@ import java.util.List;
 public class FolderService {
 
     private final FolderRepository folderRepository;
+    private final ProductRepository productRepository;
 
+    @Transactional
     public void addFolder(List<String> folderNames, User user) {
         List<Folder> existFolderList = folderRepository.findAllByUserAndNameIn(user, folderNames);
 
@@ -34,6 +39,7 @@ public class FolderService {
         folderRepository.saveAll(folderList);
     }
 
+    @Transactional(readOnly = true)
     public List<FolderResponseDto> getFolders(User user) {
         List<Folder> folderList = folderRepository.findAllByUser(user);
         List<FolderResponseDto> folderResponseDtoList = new ArrayList<>();
