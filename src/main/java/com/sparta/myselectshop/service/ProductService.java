@@ -49,7 +49,7 @@ public class ProductService {
         return new ProductResponseDto(product);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<ProductResponseDto> getProducts(User user, int page, int size, String sortBy, boolean isAsc) {
 
         // 페이지
