@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TimerAop {
 
+    // AOP 개념 정리
     private final ApiUseTimeRepository apiUseTimeRepository;
 
     @Pointcut("@annotation(com.sparta.myselectshop.util.Timer)")
