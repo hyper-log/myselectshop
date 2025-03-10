@@ -42,6 +42,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
     }
 
+    // 변경 사항 잘 되는지 실험
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) {
         String username = ((UserDetailsImpl) authResult.getPrincipal()).getUsername();
